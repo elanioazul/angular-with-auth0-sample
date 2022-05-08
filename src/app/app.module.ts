@@ -23,6 +23,8 @@ import { LogoutButtonComponent } from './components/logout-button/logout-button.
 import { AuthenticationButtonComponent } from './components/authentication-button/authentication-button.component';
 import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,13 @@ import { AuthNavComponent } from './components/auth-nav/auth-nav.component';
     AuthModule.forRoot({
       ...env.auth,
     }),
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
