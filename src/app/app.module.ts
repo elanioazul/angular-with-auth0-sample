@@ -15,6 +15,8 @@ import { ExternalApiComponent } from './pages/external-api/external-api.componen
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    AuthModule.forRoot({
+      ...env.auth,
+    }),
   ],
   bootstrap: [AppComponent],
 })
