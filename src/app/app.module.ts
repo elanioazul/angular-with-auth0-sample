@@ -50,6 +50,9 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     FontAwesomeModule,
     AuthModule.forRoot({
       ...env.auth,
+      httpInterceptor: {
+        allowedList: [`${env.dev.serverUrl}/api/messages/protected-message`],
+      },
     }),
   ],
   providers: [
